@@ -83,7 +83,7 @@
                                 {{ $item->ad_delivery_stop_time }}
                             </td>
                             <td class="whitespace-normal px-4 py-2">
-                                {{ implode(', ', array_unique(array_filter($item->ad_creative_link_captions))) }}
+                                {{ implode(', ', array_unique(array_filter($item->ad_creative_link_captions)) ?? ['N/A']) }}
                             </td>
                         </tr>
                     @endforeach

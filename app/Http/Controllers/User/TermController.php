@@ -57,11 +57,13 @@ class TermController extends Controller
     public function show(string $id)
     {
         $term =  \App\Models\TermTrend::findOrFail($id);
-        $flattenedSites = Arr::flatten($term->fbAds()->select('ad_creative_link_captions')->distinct()->whereNotNull('ad_creative_link_captions')->get()->pluck('ad_creative_link_captions'));
+        $flattenedSites = Arr::flatten($term->fbAds()->select('ad_creative_link_captions')->whereNotNull('ad_creative_link_captions')->get()->pluck('ad_creative_link_captions'));
+        $sites = array_count_values($flattenedSites);
+        arsort($sites);
         $data =  [
             'total_ads' => $term->fbAds()->count(),
             'pages' => $term->fbAds()->select('page_name')->distinct()->get()->pluck('page_name'),
-            'links' => array_count_values($flattenedSites),
+            'links' => $sites,
         ];
         return view('user.terms.show', compact('term', 'data'));
     }

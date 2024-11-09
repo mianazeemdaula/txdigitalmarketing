@@ -2,12 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\FacebookAdsController;
 use Illuminate\Support\Arr;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/facebook/ads/keyword', [FacebookAdsController::class, 'getKeywordData']);
+
 
 Route::group([], function () {
     Route::get('/dashboard', function () {

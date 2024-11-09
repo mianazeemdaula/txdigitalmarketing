@@ -91,5 +91,33 @@
             </table>
             <x-pagging :paginator="$term->fbAds()->paginate()" />
         </div>
+
+        <div class="py-2 text-xs">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-4 py-1 text-left text-sm font-normal text-gray-700">
+                            Web/Content
+                        </th>
+                        <th scope="col" class="px-6 py-1 text-left text-sm font-normal text-gray-700">
+                            Count of Ads
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @foreach ($data['links'] as $key => $link)
+                        <tr>
+                            <td class="whitespace-normal px-4 py-2">
+                                <a href="https://{{ $key }}" target="_blank" rel="noopener noreferrer">
+                                    {{ $key }}</a>
+                            </td>
+                            <td class="whitespace-normal px-6 py-2">
+                                {{ $link }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </section>
 @endsection
